@@ -1245,6 +1245,8 @@ a.ct-v:hover{color:var(--accent)}
 .reel.is-pinned .rl-ghost{display:block;position:absolute;z-index:1;right:clamp(18px,4vw,56px);top:clamp(128px,22vh,220px);font:700 min(30vw,38svh)/.8 var(--f-display);letter-spacing:-.06em;color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.4);pointer-events:none}
 .reel.is-pinned .rl-copy{z-index:2}
 .rl-bars button:focus-visible{outline:2px solid #fff;outline-offset:2px}
+/* phones: the browser bar slides away while scrolling, so the pinned scene is sized to the tallest viewport (no strip of page under it) and its copy is lifted by the bar height */
+@supports (height:100lvh){.reel.is-pinned{height:calc(100lvh * (1 + var(--rl-d,6.6)))}.reel.is-pinned .rl-stick{height:100lvh}.reel.is-pinned .rl-copy{padding-bottom:calc(clamp(26px,5vh,56px) + 100lvh - 100svh)}}
 @media(max-width:700px){.reel.is-pinned .rl-h{font-size:min(12.5vw,10svh)}.reel.is-pinned .rl-word{font-size:min(25vw,24svh)}.rl-side{flex-direction:column;align-items:flex-start}}
 </style>
 
@@ -2084,7 +2086,7 @@ window.D5 = {
         const pc = (v, of) => (v / of * 100).toFixed(3) + '%';      // percentages only: gsap would otherwise convert px to % against the wrong axis
         return 'inset(' + pc(top, vh) + ' ' + pc(sx, vw) + ' ' + pc(bot, vh) + ' ' + pc(sx, vw) + ' round 32px 32px 32px 32px)';
       };
-      const wipe = i => i % 2 ? 'inset(0% 0% 0% 100% round 44px 0px 0px 44px)' : 'inset(100% 0% 0% 0% round 44px 44px 0px 0px)';
+      const wipe = () => 'inset(100% 0% 0% 0% round 44px 44px 0px 0px)';   /* one transition for every scene: the next one rises from the bottom, the same direction as the scroll */
       const OPEN = 1.5, STEP = 1.9, HOLD = .9, at = i => OPEN + HOLD + (i - 1) * STEP;
       gsap.set(frame, { clipPath: fromClip });
       slides.forEach((s, i) => { if (i) gsap.set(s, { clipPath: wipe(i) }); gsap.set(letters(i), { yPercent: 118 }); gsap.set(side(i), { y: 28, opacity: 0 }); gsap.set(ghost(i), { yPercent: 70, opacity: 0 }); });
@@ -2111,7 +2113,7 @@ window.D5 = {
         .to(letters(0), { yPercent: 0, duration: .8, stagger: .06, ease: 'power3.out' }, OPEN * .75)
         .to(side(0), { y: 0, opacity: 1, duration: .6, stagger: .1, ease: 'power3.out' }, OPEN * 1.0);
       for (let i = 1; i < n; i++) {
-        const p0 = at(i), horiz = i % 2 === 1;
+        const p0 = at(i), horiz = false;
         tl.to(letters(i - 1), { yPercent: -118, duration: .5, stagger: .03, ease: 'power3.in' }, p0)
           .to(side(i - 1), { y: -18, opacity: 0, duration: .4 }, p0)
           .to(ghost(i - 1), { yPercent: -45, opacity: 0, duration: .7, ease: 'power2.in' }, p0)
