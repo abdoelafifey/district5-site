@@ -7,7 +7,7 @@
 <meta name="description" content="District 5: shop, dine, play, live and work in one walkable district in New Katameya, New Cairo.">
 <meta name="theme-color" content="#F5F2EC">
 <meta name="color-scheme" content="only light">
-<style>[hidden]{display:none!important}</style>
+<style>html,body{margin:0}[hidden]{display:none!important}</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap">
@@ -37,6 +37,7 @@
   --logo-filter:invert(1); color-scheme:dark}
 
 *,*::before,*::after{box-sizing:border-box}
+html,body{margin:0}
 html{scroll-behavior:auto;background:#F5F2EC;color-scheme:only light}
 body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--paper)}
@@ -1203,8 +1204,10 @@ a.ct-v:hover{color:var(--accent)}
 .rl-intro{margin-bottom:clamp(28px,4vw,56px);text-align:center}
 .rl-intro .eyebrow{display:block}
 .rl-h{font:700 clamp(44px,7.4vw,120px)/.98 var(--f-display);letter-spacing:-.045em;margin:14px 0 0}
-.reel-frame{display:grid;gap:16px}
-.rl-slide{position:relative;border-radius:28px;overflow:hidden;min-height:min(560px,120vw);color:#fff;background:var(--ink)}
+.reel-frame{display:grid;gap:0}
+.rl-slide{position:relative;border-radius:0;overflow:hidden;min-height:100vh;min-height:100svh;color:#fff;background:var(--ink)}
+.reel.wrap{max-width:none;margin-inline:0;padding-inline:0}
+.reel.wrap .rl-intro{padding-inline:var(--gutter)}
 .rl-slide>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;max-width:none}
 .rl-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,11,18,.3) 0%,rgba(11,11,18,0) 26%,rgba(11,11,18,.35) 55%,rgba(11,11,18,.88) 100%)}
 .rl-copy{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;gap:clamp(10px,2vh,20px);padding:clamp(22px,4vw,56px)}
@@ -1242,7 +1245,7 @@ a.ct-v:hover{color:var(--accent)}
 .reel.is-pinned .rl-ghost{display:block;position:absolute;z-index:1;right:clamp(18px,4vw,56px);top:clamp(128px,22vh,220px);font:700 min(30vw,38svh)/.8 var(--f-display);letter-spacing:-.06em;color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.4);pointer-events:none}
 .reel.is-pinned .rl-copy{z-index:2}
 .rl-bars button:focus-visible{outline:2px solid #fff;outline-offset:2px}
-@media(max-width:700px){.reel.is-pinned .rl-h{font-size:min(12.5vw,10svh)}.reel.is-pinned .rl-word{font-size:min(25vw,24svh)}.rl-slide{min-height:min(520px,130vw)}.rl-side{flex-direction:column;align-items:flex-start}}
+@media(max-width:700px){.reel.is-pinned .rl-h{font-size:min(12.5vw,10svh)}.reel.is-pinned .rl-word{font-size:min(25vw,24svh)}.rl-side{flex-direction:column;align-items:flex-start}}
 </style>
 
 </head>
