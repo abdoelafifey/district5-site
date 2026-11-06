@@ -6,6 +6,7 @@
 <title>District 5</title>
 <meta name="description" content="District 5: shop, dine, play, live and work in one walkable district in New Katameya, New Cairo.">
 <meta name="theme-color" content="#F5F2EC">
+<meta name="color-scheme" content="only light">
 <style>[hidden]{display:none!important}</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,7 +26,7 @@
   --ease-out:cubic-bezier(.22,1,.36,1);
   --ease-expo:cubic-bezier(.16,1,.3,1);
   --gutter:clamp(20px,6.5vw,128px);
-  color-scheme:light;
+  color-scheme:only light;
 }
 :root[data-theme="dark"]{
   --paper:#0B0B12; --paper-2:#15151F; --raised:#25252F;
@@ -36,7 +37,7 @@
   --logo-filter:invert(1); color-scheme:dark}
 
 *,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:auto}
+html{scroll-behavior:auto;background:#F5F2EC;color-scheme:only light}
 body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--paper)}
 img{max-width:100%;display:block}
